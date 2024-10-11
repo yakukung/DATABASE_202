@@ -18,7 +18,7 @@ GO
 
 CREATE TRIGGER tg_customerPhoneLog
 ON customer
-AFTER UPDATE
+FOR UPDATE
 AS
 BEGIN
     -- ตรวจสอบการเปลี่ยนแปลงเบอร์โทรศัพท์ในตาราง Customer
@@ -31,7 +31,7 @@ END;
 
 
 -- ทดสอบ: อัปเดตเบอร์โทรศัพท์ของลูกค้า
-UPDATE customer SET phone = '0987654323' WHERE cid = 'c01';
+UPDATE customer SET phone = '0987654333' WHERE cid = 'c01';
 
 -- ตรวจสอบข้อมูลใน log
 SELECT * FROM CustomerPhoneLog;

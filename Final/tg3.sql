@@ -22,19 +22,17 @@ BEGIN
     IF (@new_price < @old_price)
     BEGIN
         -- ยกเลิกการแก้ไข
-        ROLLBACK TRANSACTION;
         PRINT 'การแก้ไขถูกยกเลิก: ราคาเดิมคือ ' + CAST(@old_price AS VARCHAR(10)) +
             ' และราคาที่พยายามเปลี่ยนแปลงคือ ' + CAST(@new_price AS VARCHAR(10));
-        RETURN;
+        ROLLBACK;
     END
 
     -- ตรวจสอบว่าราคาใหม่เกิน 20% ของราคาเดิมหรือไม่
     IF (@new_price > @old_price * 1.2)
     BEGIN
         -- ยกเลิกการแก้ไข
-        ROLLBACK TRANSACTION;
         PRINT 'การแก้ไขถูกยกเลิก: ไม่สามารถเพิ่มราคาสินค้าเกิน 20% จากราคาเดิม';
-        RETURN;
+        ROLLBACK;
     END
     ELSE
     BEGIN
@@ -45,8 +43,8 @@ END;
 
 UPDATE product SET price = 1200 WHERE pid = 'p01'; --สำเร็จ
 UPDATE product SET price = 1100 WHERE pid = 'p01'; -- ปัจจุบันราคาต่ำกว่าลดไม่ได้
-UPDATE product SET price = 3000 WHERE pid = 'p01'; -- เพิ่มราคาเกินกว่า 30% ถูกยกเลิก
-
+UPDATE product SET price = 3100 WHERE pid = 'p01'; -- เพิ่มราคาเกินกว่า 30% ถูกยกเลิก
+SELECT * FROM product WHERE pid = 'p01';
 
 
 DROP TRIGGER tg_ProductNoDiscount;

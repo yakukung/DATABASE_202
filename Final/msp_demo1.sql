@@ -15,3 +15,5 @@ BEGIN
 END
 
 exec msp_demo1 '2024', 'wDrink';
+
+DROP PROCEDURE IF EXISTS msp_demo1

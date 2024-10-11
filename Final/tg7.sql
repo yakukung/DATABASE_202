@@ -31,15 +31,14 @@ BEGIN
         WHERE cid = @suggested_id;
 
         -- แสดงข้อความว่าผู้แนะนำได้รับแต้มเพิ่ม
-        PRINT 'ลูกค้ารหัส ' + @suggested_id + ' ได้รับแต้มเพิ่ม = ' + CAST(@bonus_points AS VARCHAR(10)) + ' แต้ม';
+        PRINT 'ลูกค้ารหัส ' + @suggested_id + ' ได้รับแต้มเพิ่ม = ' + str(@bonus_points)+ ' แต้ม';
         PRINT 'ทำให้ตอนนี้มี point = ' + CAST(@current_points AS VARCHAR(10));  -- แสดงแต้มสะสมใหม่
     END
 END;
 
 
-
-
 DROP TRIGGER tg_bonusSuggestedCustomer;
 
 
-insert into CUSTOMER values('c23', 'Killua', null, null, '7-7-2000', 0, 'c05')
+insert into CUSTOMER values('c25', 'Killua', null, null, '7-7-2000', 0, 'c05')
+

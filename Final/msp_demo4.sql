@@ -27,3 +27,7 @@ end
 
 
 exec msp_demo4 '2023', 'uBuy'
+
+
+DROP PROCEDURE IF EXISTS msp_demo4
+DROP VIEW IF EXISTS demo_view4

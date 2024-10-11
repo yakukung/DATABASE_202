@@ -17,9 +17,8 @@ BEGIN
 
     IF (@used_points > @max_points)
     BEGIN
-        ROLLBACK TRANSACTION;
         PRINT 'ไม่สามารถขายได้: สินค้านี้สามารถใช้ point ลดราคาได้เพียง ' + CAST(@max_points AS VARCHAR(10)) + ' เท่านั้น';
-        RETURN;
+        ROLLBACK;
     END
     ELSE
     BEGIN

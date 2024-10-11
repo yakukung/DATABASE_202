@@ -11,7 +11,7 @@ CREATE PROCEDURE msp_demo7(
 AS
 BEGIN
     -- ถ้า @shop_name เป็น NULL ให้แสดงข้อมูลจากทุกร้าน
-    IF (@shop_name IS NULL)
+    IF (@shop_name IS NULL
         SELECT 
             orders.oid, 
             orders.shopid, 

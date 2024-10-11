@@ -27,10 +27,9 @@ BEGIN
     IF (@new_price < @old_price)
         BEGIN
             -- ยกเลิกการแก้ไข
-            ROLLBACK TRANSACTION;
             PRINT 'การแก้ไขถูกยกเลิก: ราคาเดิมคือ ' + CAST(@old_price AS VARCHAR(10)) +
                 ' และราคาที่พยายามเปลี่ยนแปลงคือ ' + CAST(@new_price AS VARCHAR(10));
-            RETURN;
+        ROLLBACK;
     END
     ELSE
         BEGIN

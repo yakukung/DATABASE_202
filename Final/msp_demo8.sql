@@ -8,21 +8,18 @@ CREATE PROCEDURE msp_demo8(
 AS
 BEGIN
     SELECT 
-        MONTH(orders.odate) AS month,
-        YEAR(orders.odate) AS year,
-        SUM(orders.final_price) AS ยอดขายรวม
+        MONTH(odate) AS month,
+        YEAR(odate) AS year,
+        SUM(final_price) AS ยอดขายรวม
     FROM orders
-    WHERE YEAR(orders.odate) = @year
-    AND orders.shopid = @shopid
-    GROUP BY 
-        MONTH(orders.odate), 
-        YEAR(orders.odate)
-    ORDER BY 
-        month;
+    WHERE YEAR(odate) = @year
+    AND shopid = @shopid
+    GROUP BY MONTH(odate), YEAR(odate)
+    ORDER BY month;
 END;
 
 
-exec msp_demo8 '2024', 's05'; 
+exec msp_demo8 '2024', 's03'; 
 
 
 

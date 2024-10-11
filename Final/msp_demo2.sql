@@ -23,3 +23,6 @@ begin
 end
 
 exec msp_demo2 null, 'wDrink';
+
+
+DROP PROCEDURE IF EXISTS msp_demo2

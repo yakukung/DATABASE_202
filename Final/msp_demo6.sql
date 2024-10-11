@@ -35,7 +35,7 @@ END
 select * from product
 
 -- ลดราคาสินค้าที่ปี 2024 ขายไดน้อ้ยกวา่ 2 ชิ้น โดยลดราคาลง 50%
-exec msp_demo6 2024, 2 , 50
+exec msp_demo6 2024, 6 , 50
 
 
  DROP PROCEDURE IF EXISTS msp_demo6

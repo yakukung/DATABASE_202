@@ -35,7 +35,7 @@ END;
 DROP TRIGGER tg_checkShopStatus;
 
 
-INSERT INTO orders(oid, cusid, shopid, final_price) VALUES (705, 'c01', 's01', 500);
+INSERT INTO orders(oid, cusid, shopid, final_price) VALUES (707, 'c01', 's06', 500);
 
    SELECT * FROM shop
    SELECT * FROM orders
