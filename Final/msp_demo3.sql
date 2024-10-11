@@ -6,12 +6,12 @@
 
 create view demo_view3(cusid, year, total_discount, total_buy)
 as
-    select orders.cusid,
-    year(orders.odate) as year,
-    sum(orders.discount_point) as total_discount,
-    sum(orders.final_price) as total_buy
+    select cusid,
+    year(odate) as year,
+    sum(discount_point) as total_discount,
+    sum(final_price) as total_buy
     from orders
-    group by orders.cusid, year(orders.odate);
+    group by cusid, year(odate);
 
 GO
 
@@ -26,3 +26,8 @@ begin
 end
 --------------------------------
 exec msp_demo3 2024
+
+
+
+    DROP VIEW IF EXISTS demo_view3
+      DROP PROCEDURE IF EXISTS msp_demo3

@@ -8,30 +8,22 @@ CREATE PROCEDURE msp_demo5
     @year VARCHAR(4)
 AS
 BEGIN
-    DECLARE @results TABLE (
-        cusid VARCHAR(10),
-        year INT,
-        total_buy INT,
-        points_added INT
-    );
-    INSERT INTO @results (cusid, year, total_buy, points_added)
-    SELECT cusid, year, total_buy,
-        CASE
-            WHEN total_buy > 50000 THEN 500
-            WHEN total_buy > 20000 THEN 100
-            WHEN total_buy > 5000 THEN 20
-            ELSE 0
-        END AS points_added
-    FROM demo_view3
-    WHERE year = @year;
-    
     UPDATE c
-    SET c.point = c.point + r.points_added
-    FROM customer c, @results r
-    where c.cid = r.cusid;
-END
+    SET c.point = c.point + 
+        CASE
+            WHEN d.total_buy > 50000 THEN 500
+            WHEN d.total_buy > 20000 THEN 100
+            WHEN d.total_buy > 5000 THEN 20
+            ELSE 0
+        END
+    FROM customer c, demo_view3 d
+    WHERE c.cid = d.cusid
+    AND d.year = @year;
+END;
 
 
 select * from demo_view3 where year = 2024
 select * from customer
 exec msp_demo5 '2024'
+
+    DROP PROCEDURE IF EXISTS msp_demo5

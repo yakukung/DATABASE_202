@@ -3,8 +3,8 @@
 -- โดยแสดงเฉพําะออเดอร์ในปี @year จากร้านชื่อ @shop_name
 -- ถ้ําปี@year ที่ส่งมําเป็น null ให้แสดงข้อมูลออเดอร์ของทุกปี
 create procedure msp_demo2
-@year varchar(4),
-@shop_name varchar(100)
+    @year varchar(4),
+    @shop_name varchar(100)
 as
 begin
     if(@year is null) -- แสดงข้อมูลทุกปี ดงัน้นั ไม่ตอ้งใส่เงื่อนไข @year
