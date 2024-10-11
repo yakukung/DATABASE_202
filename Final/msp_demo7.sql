@@ -11,8 +11,7 @@ CREATE PROCEDURE msp_demo7(
 AS
 BEGIN
     -- ถ้า @shop_name เป็น NULL ให้แสดงข้อมูลจากทุกร้าน
-    IF @shop_name IS NULL
-    BEGIN
+    IF (@shop_name IS NULL)
         SELECT 
             orders.oid, 
             orders.shopid, 
@@ -22,11 +21,8 @@ BEGIN
         FROM orders,shop
         WHERE orders.shopid = shop.sid
         AND YEAR(orders.odate) = @year
-        ORDER BY 
-            shop.name ASC, จำนวนวัน DESC;
-    END
+        ORDER BY shop.name ASC, จำนวนวัน DESC;
     ELSE
-    BEGIN
         -- ถ้า @shop_name ไม่เป็น NULL ให้แสดงข้อมูลเฉพาะร้านนั้น
         SELECT 
             orders.oid, 
@@ -38,8 +34,7 @@ BEGIN
         WHERE orders.shopid = shop.sid
         AND YEAR(orders.odate) = @year
         AND shop.name = @shop_name
-        ORDER BY จำนวนวัน DESC;
-    END
+        ORDER BY  shop.name ASC, จำนวนวัน DESC;
 END;
 
 -- แสดงข้อมูลของร้าน wDrink

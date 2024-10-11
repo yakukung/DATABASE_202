@@ -5,11 +5,11 @@
 
 create view demo_view4(shopid, year, total_sell)
 as
-    select orders.shopid,
-    year(orders.odate) as year,
-    sum(orders.final_price)
+    select shopid,
+    year(odate) as year,
+    sum(final_price)
     from orders
-    group by orders.shopid, year(orders.odate)
+    group by shopid, year(odate)
 
 GO
 
